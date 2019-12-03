@@ -1,6 +1,8 @@
 package com.example.basic_app_work;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.JsonReader;
@@ -13,8 +15,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+
 
     String TAG;
 
@@ -38,18 +45,45 @@ public class MainActivity extends AppCompatActivity {
 //            JSONObject object1 = jsonArray.getJSONObject("hotels");
 //            Log.d(TAG, "onCreate: "+object1);
 //            TextView test = findViewById(R.id.testJson);
+//            JSONObject reader = new JSONObject(json);
+//            Log.d(TAG, "onCreate: "+reader);
+//            String content1 = reader.getString("hotels");
+//            Log.d(TAG, "onCreate2: "+content1);
+//            JSONArray jsonArray = new JSONArray(content1);
+//            JSONObject object1 = jsonArray.getJSONObject(1);
+//            String id = object1.getString("id");
+////            Log.d(TAG, "ID : "+id);
+//            TextView IDhotel = findViewById(R.id.testJson);
+//            IDhotel.setText(id);
             JSONObject reader = new JSONObject(json);
-            Log.d(TAG, "onCreate: "+reader);
             String content1 = reader.getString("hotels");
-            Log.d(TAG, "onCreate2: "+content1);
             JSONArray jsonArray = new JSONArray(content1);
-            JSONObject object1 = jsonArray.getJSONObject(1);
-            String id = object1.getString("id");
-            Log.d(TAG, "ID : "+id);
+            RecyclerView recyclerView = findViewById(R.id.recyclerview);
+            //ตั้งค่า Layout
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(layoutManager);
+
+            ArrayList<String> strings = new ArrayList<>();
+                     //ตั้งค่า Adapter
+            Log.d(TAG, "JsonArrat: "+jsonArray.length());
+            for (int i=0;i<=jsonArray.length()-1;i++) {
+
+
+                JSONObject object1 = jsonArray.getJSONObject(i);
+                String hotelName = object1.getString("hotelName");
+                strings.add(hotelName);
+
+                Log.d(TAG, "onCreate: "+i+strings);
 
 
 
-            JSONObject hotel = reader.getJSONObject("id");
+            }
+            Log.d(TAG, "endLoop: ");
+
+         MyRecyclerAdapter adapter = new MyRecyclerAdapter(strings);
+          recyclerView.setAdapter(adapter);
+
+
 
 //            JSONObject object1 = hotel.getJSONArray(1);
 
@@ -61,5 +95,10 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (JSONException e){}
 
+
+
+
     }
+
+
 }
