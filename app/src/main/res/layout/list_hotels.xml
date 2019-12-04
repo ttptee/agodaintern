@@ -4,21 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="20dp"
-    android:orientation="vertical">
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/hotelName"
         android:text="Test"
         android:textSize="32sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 
-    <TextView
-        android:id="@+id/hotel_Index"
-        android:text="Index = 0"
-        android:textSize="16sp"
-        android:textColor="#aeaeae"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

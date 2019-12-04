@@ -81,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "endLoop: ");
 
          MyRecyclerAdapter adapter = new MyRecyclerAdapter(strings);
+            adapter.setItemClickListener(new MyRecyclerAdapter.ItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Log.d("test", "onItemClick: index = " + position);
+                }
+            });
           recyclerView.setAdapter(adapter);
 
 

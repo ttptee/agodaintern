@@ -16,10 +16,22 @@ import java.util.ArrayList;
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Holder>{
     String TAG;
     private ArrayList<String> mDataSet;
+    ItemClickListener mListener;
+    public void setItemClickListener(ItemClickListener listener){
+        mListener = listener;
+    }
+
+    public interface ItemClickListener{
+        void onItemClick(int position);
+    }
+
     public MyRecyclerAdapter(ArrayList<String> dataSet){
         mDataSet = dataSet;
         Log.d(TAG, "MyRecyclerAdapter: Test1");
+
+
     }
+
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,20 +50,31 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Ho
         return mDataSet.size();
     }
 
-    class Holder extends RecyclerView.ViewHolder{
+    class Holder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView textTitle;
         TextView textDescription;
 
+
         public Holder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             textTitle = itemView.findViewById(R.id.hotelName);
-            textDescription = itemView.findViewById(R.id.hotel_Index);
+
+
+//            textDescription = itemView.findViewById(R.id.hotel_Index);
+        }
+        @Override
+        public void onClick (View view){
+            if(mListener!=null)
+                mListener.onItemClick(getAdapterPosition());
         }
 
         public void setItem(int position){
             Log.d(TAG, "setItem: test2");
             textTitle.setText(mDataSet.get(position));
-            textDescription.setText("index = " + position);
+//            textDescription.setText("index = " + position);
         }
+
     }
+
 }
