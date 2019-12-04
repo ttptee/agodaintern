@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -37,34 +40,17 @@ public class MainActivity extends AppCompatActivity {
             is.read(buffer);
             is.close();
             String json =  new String(buffer, "UTF-8");
-//            Log.d(TAG, "onCreate: "+json);
-//            JSONObject jsonArray = new JSONObject(json);
-////            JSONArray jsonArray = new JSONArray(json);
-////            JSONObject object1 = jsonArray.getJSONObject(1);
-////            String content1 = object1.getString("hotels");
-//            JSONObject object1 = jsonArray.getJSONObject("hotels");
-//            Log.d(TAG, "onCreate: "+object1);
-//            TextView test = findViewById(R.id.testJson);
-//            JSONObject reader = new JSONObject(json);
-//            Log.d(TAG, "onCreate: "+reader);
-//            String content1 = reader.getString("hotels");
-//            Log.d(TAG, "onCreate2: "+content1);
-//            JSONArray jsonArray = new JSONArray(content1);
-//            JSONObject object1 = jsonArray.getJSONObject(1);
-//            String id = object1.getString("id");
-////            Log.d(TAG, "ID : "+id);
-//            TextView IDhotel = findViewById(R.id.testJson);
-//            IDhotel.setText(id);
             JSONObject reader = new JSONObject(json);
             String content1 = reader.getString("hotels");
             JSONArray jsonArray = new JSONArray(content1);
+//            ----------------------------------------------------------------------------------
             RecyclerView recyclerView = findViewById(R.id.recyclerview);
             //ตั้งค่า Layout
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
 
-            ArrayList<String> strings = new ArrayList<>();
-                     //ตั้งค่า Adapter
+            final ArrayList<String> strings = new ArrayList<>();
+            //ตั้งค่า Adapter
             Log.d(TAG, "JsonArrat: "+jsonArray.length());
             for (int i=0;i<=jsonArray.length()-1;i++) {
 
@@ -85,21 +71,27 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(int position) {
                     Log.d("test", "onItemClick: index = " + position);
+                    Intent GoDetail = new Intent(MainActivity.this, HotelDetails.class);
+                    GoDetail.putExtra("position",position);
+                    startActivity(GoDetail);
                 }
             });
           recyclerView.setAdapter(adapter);
 
-
-
-//            JSONObject object1 = hotel.getJSONArray(1);
-
-//            test.setText(content1);
         }
 
-        catch(IOException e){
-
-        }
+        catch(IOException e){}
         catch (JSONException e){}
+//        ---------------------------------------------------------------------------------------------------------------
+//        ----------------------------------Sort------------------------------------------------------------------------
+        ImageView Sortbtn = findViewById(R.id.sortBtn);
+        Sortbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goSort = new Intent(MainActivity.this,SortAndFilter.class);
+                startActivity(goSort);
+            }
+        });
 
 
 

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
@@ -15,16 +17,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/sortBtn"
-            android:layout_width="70dp"
-            android:layout_height="45dp"
+            android:layout_width="25sp"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/filter"
 
             >
 
-        </ImageButton>
+        </ImageView>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
