@@ -38,8 +38,9 @@ public class HotelDetails extends AppCompatActivity {
         });
 
 //
-        Bundle extras = getIntent().getExtras();
-        int position = extras.getInt("position");
+        Bundle indexHotle = getIntent().getExtras();
+        int position = indexHotle.getInt("position");
+
 
 //        Log.d(TAG, "onCreate: "+position);
 //        --------------------------------------------------------------------------------------------------------------------------------------------------------------
