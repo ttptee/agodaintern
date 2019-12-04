@@ -6,18 +6,19 @@
     android:padding="20dp"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    app:layout_constraintCircleRadius="15dp"
+    android:background="@color/colorPrimary"
 
-    android:background="@color/colorPrimary">
+   >
 
     <TextView
         android:id="@+id/hotelName"
         android:text="Test"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         />
+
 
 
 
