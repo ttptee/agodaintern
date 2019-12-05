@@ -24,11 +24,16 @@ String TAG;
 
 
 
+
         Closebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent close = new Intent(SortAndFilter.this,MainActivity.class);
+                close.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP);
+//                close.putExtra("StarforSort", StarforSort);
+//                close.putExtra("check", checksort);
                 startActivity(close);
+                Log.d(TAG, "Close: ");
             }
         });
         ShowSort.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +48,7 @@ String TAG;
                     startActivity(sendStar);
                 }
                 else {
-                    Log.d(TAG, "Star : " + ratingBar.getRating());
+                    Log.d(TAG, "Star2 : " + ratingBar.getRating());
                     Intent sendStar = new Intent(SortAndFilter.this, MainActivity.class);
                     sendStar.putExtra("StarforSort", ratingBar.getRating());
                     startActivity(sendStar);
