@@ -39,7 +39,12 @@ public class HotelDetails extends AppCompatActivity {
 
 //
         Bundle indexHotle = getIntent().getExtras();
-        int position = indexHotle.getInt("position");
+        
+        String Hotellist = indexHotle.getString("stringsHotel");
+        String Arealist = indexHotle.getString("StringArea");
+        String Starlist = indexHotle.getString("StringStar");
+        String Roomlist = indexHotle.getString("StringRoom");
+
 
 
 //        Log.d(TAG, "onCreate: "+position);
@@ -55,31 +60,27 @@ public class HotelDetails extends AppCompatActivity {
             String json =  new String(buffer, "UTF-8");
             JSONObject reader = new JSONObject(json);
             String content1 = reader.getString("hotels");
+           Log.d(TAG, "content1: "+content1);
             JSONArray jsonArray = new JSONArray(content1);
 
-            //ตั้งค่า Layout
 
 
+                    String HotelName = Hotellist;
+                    String Area = Arealist;
+                    String Star = Starlist;
+                    String Room = Roomlist;
 
-            //ตั้งค่า Adapter
-            Log.d(TAG, "JsonArrat: "+jsonArray.length());
+                    TextView HotelText = findViewById(R.id.ShowHotelName);
+                    TextView AreaText = findViewById(R.id.ShowHotelArea);
+                    TextView StarText = findViewById(R.id.ShowHotelStar);
+                    TextView RoomText = findViewById(R.id.ShowHotelRoom);
+
+                    HotelText.setText(HotelName);
+                    AreaText.setText(Area);
+                    StarText.setText(Star);
+                    RoomText.setText(Room);
 
 
-
-                JSONObject object1 = jsonArray.getJSONObject(position);
-                String HotelName = object1.getString("hotelName");
-                String Area = object1.getString("area");
-                String Star = object1.getString("star");
-                String Room = object1.getString("numberOfRoom");
-
-                TextView HotelText = findViewById(R.id.ShowHotelName);
-                TextView AreaText = findViewById(R.id.ShowHotelArea);
-                TextView StarText = findViewById(R.id.ShowHotelStar);
-                TextView RoomText = findViewById(R.id.ShowHotelRoom);
-                HotelText.setText(HotelName);
-                AreaText.setText(Area);
-                StarText.setText(Star);
-                RoomText.setText(Room);
 
 
 

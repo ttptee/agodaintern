@@ -52,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(layoutManager);
 
-            final ArrayList<String> strings = new ArrayList<>();
+            final ArrayList<String> stringsHotel = new ArrayList<>();
+            final ArrayList<String> stringsArea = new ArrayList<>();
+            final ArrayList<String> stringsStar = new ArrayList<>();
+            final ArrayList<String> stringsRoom = new ArrayList<>();
+
             //ตั้งค่า Adapter
             Log.d(TAG, "JsonArray: " + jsonArray.length());
 //            ----------------------------------------------------------------- sort -----------------------------------------------------------------
@@ -67,19 +71,25 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "StarforSort: "+StarforSort+" : "+star2);
 
 
-                    for (int i = 0; i <= jsonArray.length() - 1; i++){
-                        JSONObject object1 = jsonArray.getJSONObject(i);
-                        int starcheck = object1.getInt("star");
-                        if (starcheck == star2){
-                            String hotelName = object1.getString("hotelName");
-                            strings.add(hotelName);
-                            if (checksort){
-                                Log.d(TAG, "checksort: "+checksort);
-                                Collections.sort(strings);
-                                                            }
-                            Log.d(TAG, "Loop Recy Star: "+strings);
+                for (int i = 0; i <= jsonArray.length() - 1; i++){
+                    JSONObject object1 = jsonArray.getJSONObject(i);
+                    int starcheck = object1.getInt("star");
+                    if (starcheck == star2){
+                        String hotelName = object1.getString("hotelName");
+                        String hotelArea = object1.getString("area");
+                        String hotelStar = object1.getString("star");
+                        String hotelRoom = object1.getString("numberOfRoom");
+                        stringsHotel.add(hotelName);
+                        stringsArea.add(hotelArea);
+                        stringsStar.add(hotelStar);
+                        stringsRoom.add(hotelRoom);
+                        if (checksort){
+                            Log.d(TAG, "checksort: "+checksort);
+                            Collections.sort(stringsHotel);
+                        }
+                        Log.d(TAG, "Loop Recy Star: "+stringsHotel);
 
-                            state=1;
+                        state=1;
 
                     }
                 }
@@ -98,36 +108,54 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "state 0 : ");
                     Bundle StarRate = getIntent().getExtras();
                     boolean checksort = StarRate.getBoolean("check");
-                    check = 1;
+//                    Log.d(TAG, "checksort: "+checksort);
+                    if (checksort){
+                        check =1;
+                    }
+
                 } catch (Exception e) {
 
                 }
-                    for (int i = 0; i <= jsonArray.length() - 1; i++) {
+                for (int i = 0; i <= jsonArray.length() - 1; i++) {
 
 
-                        JSONObject object1 = jsonArray.getJSONObject(i);
-                        String hotelName = object1.getString("hotelName");
-                        strings.add(hotelName);
-                        if (check == 1) {
-                            Log.d(TAG, "checksortNOstar: ");
-                            Collections.sort(strings);
+                    JSONObject object1 = jsonArray.getJSONObject(i);
+                    String hotelName = object1.getString("hotelName");
+                    String hotelArea = object1.getString("area");
+                    String hotelStar = object1.getString("star");
+                    String hotelRoom = object1.getString("numberOfRoom");
+                    stringsHotel.add(hotelName);
+                    stringsArea.add(hotelArea);
+                    stringsStar.add(hotelStar);
+                    stringsRoom.add(hotelRoom);
 
-                        }
-
-//                    Log.d(TAG, "onCreate: " + i + strings);
-
+                    if (check == 1) {
+                        Log.d(TAG, "checksortNOstar: ");
+                        Collections.sort(stringsHotel);
 
                     }
-                    Log.d(TAG, "endLoop: ");
+
+//                    Log.d(TAG, "onCreate: " + i + stringsHotel);
+
+
+                }
+                Log.d(TAG, "endLoop: ");
 
             }
-            MyRecyclerAdapter adapter = new MyRecyclerAdapter(strings);
+            MyRecyclerAdapter adapter = new MyRecyclerAdapter(stringsHotel);
             adapter.setItemClickListener(new MyRecyclerAdapter.ItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
                     Log.d("test", "onItemClick: index = " + position);
                     Intent GoDetail = new Intent(MainActivity.this, HotelDetails.class);
-                    GoDetail.putExtra("position", position);
+                    GoDetail.putExtra("stringsHotel", stringsHotel.get(position));
+                    GoDetail.putExtra("StringArea", stringsArea.get(position));
+                    GoDetail.putExtra("StringStar", stringsStar.get(position));
+                    GoDetail.putExtra("StringRoom", stringsRoom.get(position));
+                    Log.d(TAG, "StringHotel: "+stringsHotel.get(position));
+                    Log.d(TAG, "StringArea: "+stringsArea.get(position));
+                    Log.d(TAG, "StringStar: "+stringsStar.get(position));
+                    Log.d(TAG, "StringRoom: "+stringsRoom.get(position));
                     startActivity(GoDetail);
                 }
             });
