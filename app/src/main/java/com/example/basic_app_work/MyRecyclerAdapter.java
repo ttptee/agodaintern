@@ -15,8 +15,10 @@ import java.util.ArrayList;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Holder>{
     String TAG;
+
     private ArrayList<String> mDataSet;
     ItemClickListener mListener;
+
     public void setItemClickListener(ItemClickListener listener){
         mListener = listener;
     }
@@ -76,5 +78,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Ho
         }
 
     }
+
 
 }

@@ -71,17 +71,29 @@ public class TestApp {
 
 //        -------------------------------------------sortTest--------------------------------
         onView(withId(R.id.sortBtn)).perform(click());
-
         onView(withId(R.id.ratingStar)).perform(click());
-
-
         onView(withId(R.id.showSort)).perform(click());
+
+//        onView(ViewMatchers.withId(R.id.recyclerview))
+//                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+//       onView(withId(R.id.ShowHotelName)).check(matches(withText("Grand Centre Point Hotel")));
 
 
         onView(withId(R.id.sortBtn)).perform(click());
         onView(withId(R.id.ratingStar)).perform(click());
         onView(withId(R.id.switchSortName)).perform(click());
         onView(withId(R.id.showSort)).perform(click());
+
+        onView(withId(R.id.sortBtn)).perform(click());
+        onView(withId(R.id.showSort)).perform(click());
+
+        onView(withId(R.id.sortBtn)).perform(click());
+        onView(withId(R.id.ratingStar)).perform(click());
+        onView(withId(R.id.switchSortName)).perform(click());
+        onView(withId(R.id.showSort)).perform(click());
+
+        onView(withId(R.id.sortBtn)).perform(click());
+        onView(withId(R.id.closeBtn)).perform(click());
 
 
 

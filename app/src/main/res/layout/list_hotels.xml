@@ -3,15 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:padding="20dp"
     android:layout_margin="20dp"
     android:orientation="vertical"
     android:background="@drawable/rounded"
 
-   >
+
+    >
+
+
 
     <TextView
-        android:gravity="center"
+        android:gravity="center_vertical"
+        android:fontFamily="sans-serif-condensed-light"
         android:id="@+id/hotelName"
         android:text="Test"
         android:textColor="#ffffff"

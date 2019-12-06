@@ -39,7 +39,7 @@ public class HotelDetails extends AppCompatActivity {
 
 //
         Bundle indexHotle = getIntent().getExtras();
-        
+
         String Hotellist = indexHotle.getString("stringsHotel");
         String Arealist = indexHotle.getString("StringArea");
         String Starlist = indexHotle.getString("StringStar");
@@ -75,10 +75,12 @@ public class HotelDetails extends AppCompatActivity {
                     TextView StarText = findViewById(R.id.ShowHotelStar);
                     TextView RoomText = findViewById(R.id.ShowHotelRoom);
 
+
                     HotelText.setText(HotelName);
                     AreaText.setText(Area);
                     StarText.setText(Star);
                     RoomText.setText(Room);
+
 
 
 
